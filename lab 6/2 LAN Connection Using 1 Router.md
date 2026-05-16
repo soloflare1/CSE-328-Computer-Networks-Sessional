@@ -110,3 +110,54 @@ ping 192.168.10.2
 * Each LAN must have a different subnet
 * Default gateway must be router interface IP
 * Correct cable type is required for connectivity
+
+---
+# Router and PC Connection in Cisco Packet Tracer
+
+## Network Topology
+- PC1 connected to Router FastEthernet0/0
+- PC2 connected to Router FastEthernet1/0
+
+## Cable Type
+| Connection | Cable Type |
+|---|---|
+| PC ↔ Router | Cross-Over |
+| PC ↔ Switch | Straight-Through |
+| Router ↔ Switch | Straight-Through |
+| PC ↔ PC | Cross-Over |
+
+## IP Configuration
+
+### Router Configuration
+| Interface | IP Address | Subnet Mask |
+|---|---|---|
+| FastEthernet0/0 | 192.168.10.1 | 255.255.255.0 |
+| FastEthernet1/0 | 192.168.11.1 | 255.255.255.0 |
+
+### PC1 Configuration
+| Setting | Value |
+|---|---|
+| IP Address | 192.168.10.2 |
+| Subnet Mask | 255.255.255.0 |
+| Default Gateway | 192.168.10.1 |
+
+### PC2 Configuration
+| Setting | Value |
+|---|---|
+| IP Address | 192.168.11.2 |
+| Subnet Mask | 255.255.255.0 |
+| Default Gateway | 192.168.11.1 |
+
+## Router CLI Configuration
+
+```bash
+enable
+configure terminal
+
+interface fa0/0
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+
+interface fa1/0
+ip address 192.168.11.1 255.255.255.0
+no shutdown
