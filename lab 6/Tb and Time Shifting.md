@@ -47,3 +47,37 @@ This ensures:
 ---
 
 The time arrays are used as the x-axis to place each modulated bit signal in its correct time position, forming a proper continuous digital transmission waveform.
+---
+
+**Tb (Bit Duration):**
+Tb is the time required to transmit one bit in a digital communication system. It defines how long each bit stays on the time axis.
+
+In MATLAB,
+
+```matlab
+Tb = 1;
+```
+
+means each bit duration is 1 second.
+
+---
+
+**Time Shifting:**
+Time shifting is used to place each bit signal in its correct time position so that signals do not overlap.
+
+In code:
+
+```matlab
+t_bit + (i-1)*Tb
+```
+
+This shifts each bit by Tb so that:
+
+* 1st bit → 0 to Tb
+* 2nd bit → Tb to 2Tb
+* 3rd bit → 2Tb to 3Tb
+
+---
+
+
+Tb defines the duration of each bit, and time shifting arranges all bits sequentially on the time axis to form a continuous waveform.
