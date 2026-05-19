@@ -90,9 +90,10 @@ ping 192.168.2.10
 
 # Problem 2. Two Router RIP Serial Setup
 
-## Router 1
 
-```bash
+# Router0
+
+```bash id="hj0kb2"
 enable
 configure terminal
 
@@ -102,8 +103,7 @@ no shutdown
 exit
 
 interface Serial2/0
-ip address 10.10.10.1 255.0.0.0
-clock rate 64000
+ip address 10.10.10.1 255.255.255.252
 no shutdown
 exit
 
@@ -117,9 +117,9 @@ end
 
 ---
 
-## Router 2
+# Router1
 
-```bash
+```bash id="8qhjcl"
 enable
 configure terminal
 
@@ -129,7 +129,7 @@ no shutdown
 exit
 
 interface Serial2/0
-ip address 10.10.10.2 255.0.0.0
+ip address 10.10.10.2 255.255.255.252
 no shutdown
 exit
 
@@ -140,26 +140,31 @@ exit
 
 end
 ```
+
 ---
 
-```bash
-network 10.0.0.0
+# PC0
+
+```text id="d5m9ee"
+IP: 192.168.1.2
+Mask: 255.255.255.0
+Gateway: 192.168.1.1
+```
+
+# PC1
+
+```text id="0i3yvr"
+IP: 192.168.2.2
+Mask: 255.255.255.0
+Gateway: 192.168.2.1
 ```
 
 ---
 
-# Testing
+Test:
 
-From PC0:
-
-```bash
-ping 192.168.2.10
-```
-
-From PC4:
-
-```bash
-ping 192.168.1.10
+```bash id="4wktwa"
+ping 192.168.2.2
 ```
 
 
