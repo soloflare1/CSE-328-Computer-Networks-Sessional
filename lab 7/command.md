@@ -93,17 +93,17 @@ ping 192.168.2.10
 
 # Router0
 
-```bash id="hj0kb2"
+```bash id="l0gqxr"
 enable
 configure terminal
 
 interface FastEthernet0/0
-ip address 192.168.1.1 255.255.255.0
+ip address 192.168.1.1 255.0.0.0
 no shutdown
 exit
 
-interface Serial2/0
-ip address 10.10.10.1 255.255.255.252
+interface Serial0/1/0
+ip address 10.10.10.1 255.0.0.0
 no shutdown
 exit
 
@@ -119,17 +119,17 @@ end
 
 # Router1
 
-```bash id="8qhjcl"
+```bash id="u4tbm5"
 enable
 configure terminal
 
 interface FastEthernet0/0
-ip address 192.168.2.1 255.255.255.0
+ip address 192.168.2.1 255.0.0.0
 no shutdown
 exit
 
-interface Serial2/0
-ip address 10.10.10.2 255.255.255.252
+interface Serial0/1/0
+ip address 10.10.10.2 255.0.0.0
 no shutdown
 exit
 
@@ -142,6 +142,18 @@ end
 ```
 
 ---
+
+# Connection
+
+```text id="3jlgom"
+PC0 FastEthernet0 -------- FastEthernet0/0 Router0
+Router0 Serial0/1/0 -------- Serial0/1/0 Router1
+Router1 FastEthernet0/0 -------- FastEthernet0 PC1
+```
+
+* PC ↔ Router = Copper Cross-Over
+* Router ↔ Router = Serial DTE
+
 
 # PC0
 
