@@ -31,7 +31,8 @@ Gateway: `192.168.2.1`
 ---
 
 # Connection
-
+Switch-2960
+Router-1941
 * PC → Switch = Straight Through
 * Switch → Router = Straight Through
 * Router ports:
@@ -194,6 +195,9 @@ end
 # Connection
 
 ```text id="3jlgom"
+
+Router-1941
+
 PC0 FastEthernet0 -------- FastEthernet0/0 Router0
 Router0 Serial0/1/0 -------- Serial0/1/0 Router1
 Router1 FastEthernet0/0 -------- FastEthernet0 PC1
