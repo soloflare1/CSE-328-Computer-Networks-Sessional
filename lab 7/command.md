@@ -86,8 +86,56 @@ From PC0:
 ping 192.168.2.10
 ```
 ---
+------------------------------------------------------------------------
+# Testing Procedure
 
+After completing the network configuration, step-by-step connectivity tests were performed to verify proper communication.
 
+---
+
+## Step 1: LAN1 Test
+
+First, a ping test was performed from PC0 to the default gateway (Router interface for LAN1):
+
+```
+PC0 > ping 192.168.1.1
+```
+
+Purpose:
+To verify that the LAN1 network and Router interface (G0/0) are working properly.
+
+---
+
+## Step 2: LAN2 Router Test
+
+Next, a ping test was performed from PC3 to the Router interface of LAN2:
+
+```
+PC3 > ping 192.168.2.1
+```
+
+Purpose:
+To ensure that the LAN2 network and Router interface (G0/1) are correctly configured and reachable.
+
+---
+
+## Step 3: Cross-Network Test
+
+Finally, communication between two different networks was tested:
+
+```
+PC0 > ping 192.168.2.10
+```
+
+Purpose:
+To verify inter-network routing between LAN1 and LAN2 through the router.
+
+---
+
+## Final Observation
+
+If Step 1 and Step 2 are successful, it confirms that both router interfaces are working correctly. If Step 3 is successful, it confirms that inter-network routing is properly configured and functioning.
+-------------------------------------------------------------------------
 # Problem 2. Two Router RIP Serial Setup
 
 
