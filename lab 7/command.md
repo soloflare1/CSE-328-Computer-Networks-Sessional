@@ -143,25 +143,36 @@ If Step 1 and Step 2 are successful, it confirms that both router interfaces are
 # Router0
 
 ```bash id="l0gqxr"
+
+1st router
+
 enable
-configure terminal
+Router# configure terminal
 
-interface FastEthernet0/0
-ip address 192.168.1.1 255.0.0.0
-no shutdown
-exit
+! Configure FastEthernet0/0 (Router to PC)
+Router(config)# interface GigabitEthernet0/0
+Router(config-if)# ip address 192.168.1.1 255.255.255.0
+Router(config-if)# no shutdown
+Router(config-if)# exit
 
-interface Serial0/1/0
-ip address 10.10.10.1 255.0.0.0
-no shutdown
-exit
+! Configure RIP Routing
+Router(config)# router rip
+Router(config-router)# network 192.168.1.0
+Router(config-router)# exit
 
-router rip
-network 192.168.1.0
-network 10.0.0.0
-exit
+! Configure Serial2/0 (Router to Router)
+Router(config)# interface Serial0/1/0
+Router(config-if)# ip address 10.10.10.1 255.0.0.0
+Router(config-if)# no shutdown
+Router(config-if)# exit
 
-end
+! Add Serial Network to RIP
+Router(config)# router rip
+Router(config-router)# network 10.0.0.0
+Router(config-router)# exit
+
+Router(config)# end
+
 ```
 
 ---
@@ -169,27 +180,28 @@ end
 # Router1
 
 ```bash id="u4tbm5"
-enable
-configure terminal
 
-interface FastEthernet0/0
-ip address 192.168.2.1 255.0.0.0
-no shutdown
-exit
+Router> enable
+Router# configure terminal
 
-interface Serial0/1/0
-ip address 10.10.10.2 255.0.0.0
-no shutdown
-exit
+! Configure FastEthernet0/0 (Router to PC)
+Router(config)# interface GigabitEthernet0/0
+Router(config-if)# ip address 192.168.2.1 255.255.255.0
+Router(config-if)# no shutdown
+Router(config-if)# exit
 
-router rip
-network 192.168.2.0
-network 10.0.0.0
-exit
+! Configure Serial2/0 (Router to Router)
+Router(config)# interface Serial0/1/0
+Router(config-if)# no shutdown
+Router(config-if)# exit
 
-end
-```
+! Configure RIP Routing
+Router(config)# router rip
+Router(config-router)# network 192.168.2.0
+Router(config-router)# network 10.0.0.0
+Router(config-router)# exit
 
+Router(config)# end
 ---
 
 # Connection
@@ -198,9 +210,9 @@ end
 
 Router-1941
 
-PC0 FastEthernet0 -------- FastEthernet0/0 Router0
+PC0 FastEthernet0 -------- Gib/0 Router0
 Router0 Serial0/1/0 -------- Serial0/1/0 Router1
-Router1 FastEthernet0/0 -------- FastEthernet0 PC1
+PC1 FastEthernet0/0 -------- Gib/0 Router1
 ```
 
 * PC ↔ Router = Copper Cross-Over
