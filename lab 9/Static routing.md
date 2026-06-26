@@ -1,5 +1,5 @@
 1
-```text
+```text  
 * Router 0 Configuration
 Router>enable
 Router#configure terminal
