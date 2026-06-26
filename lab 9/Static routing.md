@@ -1,20 +1,23 @@
 1
 ```text
-Router> enable
-Router# configure terminal
+* Router 0 Configuration
+Router>enable
+Router#configure terminal
+Router(config)#interface FastEthernet0/0
+Router(config-if)#ip address 192.168.1.1 255.255.255.0
+Router(config-if)#no shutdown
+Router(config-if)#exit
 
-Router(config)# interface FastEthernet0/0
-Router(config-if)# ip address 192.168.1.1 255.255.255.0
-Router(config-if)# no shutdown
+Router(config)#interface FastEthernet1/0
+Router(config-if)#ip address 192.168.3.10 255.255.255.0
+Router(config-if)#no shutdown
+Router(config-if)#exit
 
-Router(config-if)# exit
+! Static Routing  Configuration
+Router(config)#ip route 192.168.1.0 255.255.255.0 192.168.3.10
 
-Router(config)# interface FastEthernet1/0
-Router(config-if)# ip address 192.168.3.10 255.255.255.0
-Router(config-if)# no shutdown
-
-Router(config-if)# exit
-Router(config)#
+Router(config)#exit
+Router#
 ```
 
 
@@ -56,22 +59,30 @@ These messages indicate that both interfaces are **working correctly** and are n
 
 
 ```text
-Router> enable
-Router# configure terminal
+* Router 1 Configuration
+Router>enable
+Router#configure terminal
 
-Router(config)# interface FastEthernet0/0
-Router(config-if)# ip address 192.168.2.1 255.255.255.0
-Router(config-if)# no shutdown
+Router(config)#interface FastEthernet0/0
+Router(config-if)#ip address 192.168.2.1 255.255.255.0
+Router(config-if)#no shutdown
+Router(config-if)#exit
 
-Router(config-if)# exit
+Router(config)#interface FastEthernet1/0
+Router(config-if)#ip address 192.168.3.11 255.255.255.0
+Router(config-if)#no shutdown
+Router(config-if)#exit
 
-Router(config)# interface FastEthernet1/0
-Router(config-if)# ip address 192.168.3.11 255.255.255.0
-Router(config-if)# no shutdown
+Router(config)#exit
 
-Router(config-if)# exit
+* Static Route Configuration
 
-Router(config)# exit
+Router>enable
+Router#configure terminal
+
+Router(config)#ip route 192.168.2.0 255.255.255.0 192.168.3.11
+
+Router(config)#exit
 Router#
 ```
 
