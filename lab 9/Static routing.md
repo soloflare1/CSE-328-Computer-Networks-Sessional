@@ -118,5 +118,3 @@ two routers are configured like this:
 | Router2 | Fa1/0     | `192.168.3.10/24` |
 | Router1 | Fa1/0     | `192.168.3.11/24` |
 
-T
-This part of your configuration looks correct. If you're connecting this router to another router using `192.168.3.10`, you'll also need to configure the other router and add routing if the PCs need to communicate with another network.
